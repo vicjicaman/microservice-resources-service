@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '${DEPLOYMENT@microservice-resources-config}'
+  namespace: '${NAMESPACE@microservice-config}'
+  labels:
+    app: '${DEPLOYMENT@microservice-resources-config}'
+    moduleid: microservice-resources-service
+    version: 1.70.7-master
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: '${DEPLOYMENT@microservice-resources-config}'
+  template:
+    metadata:
+      labels:
+        app: '${DEPLOYMENT@microservice-resources-config}'
+    spec:
+      containers:
+        -
+          name: app
+          image: 'repoflow/microservice-resources-container:1.70.6-master'
+          env:
+            -
+              name: RESOURCES_BASE_ROUTE
+              value: '${BASE_ROUTE@microservice-resources-config}'
+            -
+              name: RESOURCES_INTERNAL_PORT
+              value: '${INTERNAL_PORT@microservice-resources-config}'
+          ports:
+            -
+              containerPort: '${INTERNAL_PORT@microservice-resources-config}'
