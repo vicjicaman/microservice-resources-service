@@ -6,7 +6,7 @@ metadata:
   labels:
     app: '${DEPLOYMENT@microservice-resources-config}'
     moduleid: microservice-resources-service
-    version: 1.70.0-resources-service-prod
+    version: 1.70.0-master
 spec:
   replicas: 2
   selector:
@@ -20,7 +20,7 @@ spec:
       containers:
         -
           name: app
-          image: 'repoflow/microservice-resources-container:1.70.0-resources-service-prod'
+          image: 'repoflow/microservice-resources-container:1.70.0-master'
           env:
             -
               name: RESOURCES_BASE_ROUTE
